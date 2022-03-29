@@ -1,5 +1,6 @@
 package utils;
 
+import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -16,7 +17,8 @@ public class SchemaValidator {
         return new FileInputStream(path);
     }
 
-    public void validate(InputStream jsonStream, String pathToSchema) throws Exception {
+    public void validate(JSONObject jsonObject, String pathToSchema) throws Exception {
+        InputStream jsonStream = new ByteArrayInputStream(jsonObject.toString().getBytes());
 
         JSONObject jsonSchema = new JSONObject(
             new JSONTokener(inputStreamFromClasspath(pathToSchema)));

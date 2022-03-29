@@ -1,9 +1,9 @@
-package fr.lernejo.navy_battle.server.controllers.dto;
+package fr.lernejo.navy_battle.dto;
 
 public class StartGameDto {
-    private String id;
-    private String url;
-    private String message;
+    private final String id;
+    private final String url;
+    private final String message;
 
     public StartGameDto(String id, String url, String message) {
         this.id = id;
@@ -15,23 +15,12 @@ public class StartGameDto {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getUrl() {
         return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
     }
 
     public String getMessage() {
         return message;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
 }
