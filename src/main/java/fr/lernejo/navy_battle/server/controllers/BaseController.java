@@ -6,12 +6,13 @@ import fr.lernejo.navy_battle.dto.StartGameDto;
 import org.json.JSONObject;
 
 import java.io.OutputStream;
+import java.util.Arrays;
 
 public class BaseController {
 
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    protected final ObjectMapper objectMapper = new ObjectMapper();
 
-    public JSONObject getResponseBody(HttpExchange ex)
+    protected JSONObject getResponseBody(HttpExchange ex)
     {
         try {
             return new JSONObject(new String(ex.getRequestBody().readAllBytes()));
@@ -21,10 +22,11 @@ public class BaseController {
         return null;
     }
 
-    public void jsonOk(Object dto, HttpExchange ex)
+    protected void jsonOk(Object dto, HttpExchange ex)
     {
         try {
             byte[] json = objectMapper.writeValueAsBytes(dto);
+            System.out.println(Arrays.toString(json));
             ex.sendResponseHeaders(202, json.length);
             OutputStream os = ex.getResponseBody();
             os.write(json);
